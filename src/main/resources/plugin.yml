@@ -1,0 +1,6 @@
+name: DragonEconomy
+version: ${project.version}
+main: com.dragonitemc.dragoneconomy.DragonEconomy
+depend:
+  - Eld-SQL-DNMC-Bridge
+  - WRLDPaymentsAPI
