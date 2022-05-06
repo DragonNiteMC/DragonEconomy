@@ -1,7 +1,7 @@
 name: DragonEconomy
 version: ${project.version}
 main: com.dragonitemc.dragoneconomy.DragonEconomy
-softdepend:
+loadbefore:
   - BossShopPro
 depend:
   - Eld-SQL-DNMC-Bridge
