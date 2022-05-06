@@ -14,6 +14,7 @@ import org.dragonitemc.dragoneconomy.config.DragonEconomyMessage;
 import javax.inject.Inject;
 import java.text.MessageFormat;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 public final class WRLDPriceType extends BSPriceTypeNumber {
 
@@ -37,7 +38,7 @@ public final class WRLDPriceType extends BSPriceTypeNumber {
                     MessageFormat.format("商店 {0} 的交易", bsBuy.getShop().getDisplayName()),
                     future::complete
             );
-            future.wait();
+            future.get(1, TimeUnit.MINUTES);
         }catch (Throwable e) {
             ClassManager.manager.getBugFinder().severe("$wrld 交易失敗: " + e.getMessage());
             e.printStackTrace();
