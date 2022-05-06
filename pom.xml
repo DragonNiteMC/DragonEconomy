@@ -16,7 +16,7 @@
     <repositories>
         <repository>
             <id>dragonite</id>
-            <url>https://nexus.pulogo.xyz/repository/dnmc/</url>
+            <url>https://nexus.pulogo.xyz/repository/developer/</url>
         </repository>
         <repository>
             <id>github</id>
@@ -38,6 +38,12 @@
 
 
     <dependencies>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>bossshoppro</artifactId>
+            <version>2.0.9</version>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>com.nftworlds</groupId>
             <artifactId>wrld-payments-api</artifactId>

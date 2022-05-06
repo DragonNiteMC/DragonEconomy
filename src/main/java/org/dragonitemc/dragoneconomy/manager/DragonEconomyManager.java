@@ -10,6 +10,7 @@ import org.dragonitemc.dragoneconomy.repository.TransactionLogRepository;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class DragonEconomyManager implements EconomyService {
@@ -54,6 +55,7 @@ public class DragonEconomyManager implements EconomyService {
         log.setOperator(operator);
         log.setTarget(user);
         log.setAmount(value);
+        log.setTime(LocalDateTime.now());
         log.setAction(TransactionLog.Action.WITHDRAW);
         logRepository.save(log);
 
@@ -82,6 +84,7 @@ public class DragonEconomyManager implements EconomyService {
         log.setOperator(operator);
         log.setTarget(user);
         log.setAmount(value);
+        log.setTime(LocalDateTime.now());
         log.setAction(TransactionLog.Action.DEPOSIT);
         logRepository.save(log);
 
@@ -108,6 +111,7 @@ public class DragonEconomyManager implements EconomyService {
         log.setOperator(operator);
         log.setTarget(user);
         log.setAmount(value);
+        log.setTime(LocalDateTime.now());
         log.setAction(TransactionLog.Action.SET);
         logRepository.save(log);
 
@@ -139,6 +143,7 @@ public class DragonEconomyManager implements EconomyService {
         log.setUser(fromUser);
         log.setTarget(toUser);
         log.setAmount(amount);
+        log.setTime(LocalDateTime.now());
         log.setAction(TransactionLog.Action.TRANSFER);
         logRepository.save(log);
 

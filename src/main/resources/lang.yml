@@ -1,0 +1,18 @@
+prefix: "&dDragonEconomy// &7"
+no-player-arg-in-console: "you must specify a player in the console"
+fetching-balance: "fetching balance for &e{0}..."
+balance: "&e{0}'s balance: &6{1}"
+no-console: "you can't use this command in the console"
+transferring-balance: "transferring ${0} from &e{1} to &e{2}..."
+operation-success: "operation successful"
+operation-failed: "operation failed: {0}"
+# ACCOUNT_NOT_EXIST, SUCCESS, BALANCE_INSUFFICIENT, UNKNOWN_ERROR
+result:
+  ACCOUNT_NOT_EXIST: "&caccount does not exist"
+  SUCCESS: "&aoperation successful"
+  BALANCE_INSUFFICIENT: "&cinsufficient balance"
+  UNKNOWN_ERROR: "&cunknown error:"
+  ERROR: "&coperation failed: {0}"
+display:
+  wrld: "{0} $wrld"
+  dragems: "{0} gems"

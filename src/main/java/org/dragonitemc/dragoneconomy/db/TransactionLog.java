@@ -1,6 +1,7 @@
 package org.dragonitemc.dragoneconomy.db;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "DragonEncomy_TransactionLog")
@@ -12,6 +13,9 @@ public class TransactionLog {
 
     @Column
     private String operator;
+
+    @Column
+    private LocalDateTime time;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "player_id", referencedColumnName = "uuid")
@@ -66,6 +70,14 @@ public class TransactionLog {
 
     public void setAction(Action action) {
         this.action = action;
+    }
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 
     public enum Action {

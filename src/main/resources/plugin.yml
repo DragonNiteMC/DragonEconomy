@@ -1,6 +1,8 @@
 name: DragonEconomy
 version: ${project.version}
 main: com.dragonitemc.dragoneconomy.DragonEconomy
+softdepend:
+  - BossShopPro
 depend:
   - Eld-SQL-DNMC-Bridge
   - WRLDPaymentsAPI
