@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class TransactionLog {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
     @Column
