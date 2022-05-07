@@ -12,7 +12,7 @@ public final class BossShopDragems extends BSPointsPlugin {
     private EconomyService economyService;
 
     public BossShopDragems() {
-        super("gems");
+        super("DragonEconomy");
     }
 
     @Override
