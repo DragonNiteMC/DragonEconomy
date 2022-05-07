@@ -40,7 +40,8 @@ public class DragonEconomy extends ELDBukkitPlugin {
 
         SQLInstallation sqlInstallation = collection.getInstallation(SQLInstallation.class);
         sqlInstallation.bindEntities(EconomyUser.class, TransactionLog.class);
-        sqlInstallation.bindJpaRepository(EconomyUserRepository.class, TransactionLogRepository.class);
+        sqlInstallation.bindJpaRepository(EconomyUserRepository.class);
+        sqlInstallation.bindJpaRepository(TransactionLogRepository.class);
 
     }
 
