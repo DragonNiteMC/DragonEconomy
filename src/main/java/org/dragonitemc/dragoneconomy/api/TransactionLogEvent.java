@@ -9,6 +9,9 @@ public class TransactionLogEvent extends Event {
 
     private final static HandlerList handlers = new HandlerList();
 
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
 
     private final TransactionLog log;
 
