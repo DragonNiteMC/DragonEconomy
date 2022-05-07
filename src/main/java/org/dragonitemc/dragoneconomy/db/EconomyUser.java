@@ -12,7 +12,8 @@ import java.util.UUID;
 public class EconomyUser {
 
     @Id
-    private UUID uuid;
+    @Column(columnDefinition = "varchar(40)")
+    private UUID id;
 
     @Column
     private Double balance;
@@ -26,12 +27,12 @@ public class EconomyUser {
         this.balance = balance;
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public UUID getId() {
+        return id;
     }
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
+    public void setId(UUID uuid) {
+        this.id = uuid;
     }
 
 }

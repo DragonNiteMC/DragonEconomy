@@ -1,13 +1,10 @@
 package org.dragonitemc.dragoneconomy.hook;
 
-import jnr.ffi.annotations.In;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
-import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.plugin.Plugin;
 import org.dragonitemc.dragoneconomy.DragonEconomy;
 import org.dragonitemc.dragoneconomy.api.AsyncEconomyService;
 import org.dragonitemc.dragoneconomy.api.NFTokenService;
@@ -47,8 +44,8 @@ public final class PlaceholderHook extends PlaceholderExpansion implements Liste
     @EventHandler
     public void onTransactionLog(TransactionLogEvent event){
         TransactionLog log = event.getLog();
-        economyService.getBalance(log.getUser().getUuid()).thenRunAsync(balance -> {
-            this.balanceCache.put(log.getUser().getUuid(), balance);
+        economyService.getBalance(log.getUser().getId()).thenRunAsync(balance -> {
+            this.balanceCache.put(log.getUser().getId(), balance);
             plugin.getLogger().info("Cache updated.");
         });
     }

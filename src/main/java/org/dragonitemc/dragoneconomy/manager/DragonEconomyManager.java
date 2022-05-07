@@ -9,7 +9,6 @@ import org.dragonitemc.dragoneconomy.repository.EconomyUserRepository;
 import org.dragonitemc.dragoneconomy.repository.TransactionLogRepository;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -75,7 +74,7 @@ public class DragonEconomyManager implements EconomyService {
         var user = economyRepository.findById(player).orElseGet(() -> {
             var eco = new EconomyUser();
             eco.setBalance(0.0);
-            eco.setUuid(player);
+            eco.setId(player);
             return eco;
         });
         var balance = user.getBalance();
@@ -105,7 +104,7 @@ public class DragonEconomyManager implements EconomyService {
         var user = economyRepository.findById(player).orElseGet(() -> {
             var eco = new EconomyUser();
             eco.setBalance(0.0);
-            eco.setUuid(player);
+            eco.setId(player);
             return eco;
         });
         user.setBalance(value);
