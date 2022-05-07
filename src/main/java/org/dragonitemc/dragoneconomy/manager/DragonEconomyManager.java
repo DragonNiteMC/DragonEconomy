@@ -37,7 +37,6 @@ public class DragonEconomyManager implements EconomyService {
         return withdrawPlayer(player, value, "console");
     }
 
-    @Transactional
     @Override
     public UpdateResult withdrawPlayer(UUID player, double value, String operator) {
         var opt = economyRepository.findById(player);
@@ -71,13 +70,12 @@ public class DragonEconomyManager implements EconomyService {
 
 
     // deposit will create account if user not exist.
-    @Transactional
     @Override
     public UpdateResult depositPlayer(UUID player, double value, String operator) {
         var user = economyRepository.findById(player).orElseGet(() -> {
             var eco = new EconomyUser();
             eco.setBalance(0.0);
-            eco.setUuid(player.toString());
+            eco.setUuid(player);
             return eco;
         });
         var balance = user.getBalance();
@@ -102,13 +100,12 @@ public class DragonEconomyManager implements EconomyService {
     }
 
     // set player will create account if user not exist.
-    @Transactional
     @Override
     public UpdateResult setPlayer(UUID player, double value, String operator) {
         var user = economyRepository.findById(player).orElseGet(() -> {
             var eco = new EconomyUser();
             eco.setBalance(0.0);
-            eco.setUuid(player.toString());
+            eco.setUuid(player);
             return eco;
         });
         user.setBalance(value);
@@ -127,7 +124,6 @@ public class DragonEconomyManager implements EconomyService {
     }
 
 
-    @Transactional
     @Override
     public UpdateResult transfer(UUID from, UUID to, double amount) {
         var fromOpt = economyRepository.findById(from);

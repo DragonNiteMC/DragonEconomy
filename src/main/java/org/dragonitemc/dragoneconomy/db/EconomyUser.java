@@ -12,7 +12,7 @@ import java.util.UUID;
 public class EconomyUser {
 
     @Id
-    private String uuid;
+    private UUID uuid;
 
     @Column
     private Double balance;
@@ -26,11 +26,11 @@ public class EconomyUser {
         this.balance = balance;
     }
 
-    public String getUuid() {
+    public UUID getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
 

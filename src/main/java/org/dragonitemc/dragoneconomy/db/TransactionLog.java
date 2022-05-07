@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class TransactionLog {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column
@@ -78,6 +78,10 @@ public class TransactionLog {
 
     public void setTime(LocalDateTime time) {
         this.time = time;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public enum Action {
