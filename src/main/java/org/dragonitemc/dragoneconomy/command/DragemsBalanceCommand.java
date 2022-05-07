@@ -11,6 +11,7 @@ import org.dragonitemc.dragoneconomy.api.EconomyService;
 import org.dragonitemc.dragoneconomy.config.DragonEconomyMessage;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @Commander(
         name = "balance",
@@ -40,7 +41,7 @@ public class DragemsBalanceCommand implements CommandNode {
 
         sender.sendMessage(message.getLang().get("fetching-balance", player.getName()));
         economyService.getBalance(player.getUniqueId())
-                .thenRunSync(balance -> sender.sendMessage(message.getLang().get("balance", player.getName(), balance)))
+                .thenRunSync(balance -> sender.sendMessage(message.getLang().get("balance", List.of(player.getName(), balance).toArray())))
                 .joinWithCatch(ex -> sender.sendMessage(message.getErrorMessage(ex)));;
 
     }

@@ -76,6 +76,7 @@ public class DragonEconomyManager implements EconomyService {
     public UpdateResult depositPlayer(UUID player, double value, String operator) {
         var user = economyRepository.findById(player).orElseGet(() -> {
             var eco = new EconomyUser();
+            eco.setBalance(0.0);
             eco.setUuid(player);
             return eco;
         });
@@ -106,6 +107,7 @@ public class DragonEconomyManager implements EconomyService {
     public UpdateResult setPlayer(UUID player, double value, String operator) {
         var user = economyRepository.findById(player).orElseGet(() -> {
             var eco = new EconomyUser();
+            eco.setBalance(0.0);
             eco.setUuid(player);
             return eco;
         });
