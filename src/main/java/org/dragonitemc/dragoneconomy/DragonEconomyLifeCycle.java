@@ -7,11 +7,6 @@ import org.dragonitemc.dragoneconomy.manager.BossShopProHooker;
 
 import javax.inject.Inject;
 
-
-@ELDPlugin(
-        lifeCycle = DragonEconomyLifeCycle.class,
-        registry = DragonEconomyRegistry.class
-)
 public class DragonEconomyLifeCycle implements ELDLifeCycle {
 
     @Inject
