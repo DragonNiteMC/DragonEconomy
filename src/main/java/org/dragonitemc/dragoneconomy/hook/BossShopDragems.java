@@ -17,24 +17,24 @@ public final class BossShopDragems extends BSPointsPlugin {
 
     @Override
     public double getPoints(OfflinePlayer offlinePlayer) {
-        return economyService.getBalance(offlinePlayer);
+        return economyService.getBalance(offlinePlayer.getUniqueId());
     }
 
     @Override
     public double setPoints(OfflinePlayer offlinePlayer, double v) {
-        economyService.setPlayer(offlinePlayer, v);
+        economyService.setPlayer(offlinePlayer.getUniqueId(), v);
         return getPoints(offlinePlayer);
     }
 
     @Override
     public double takePoints(OfflinePlayer offlinePlayer, double v) {
-        economyService.withdrawPlayer(offlinePlayer, v);
+        economyService.withdrawPlayer(offlinePlayer.getUniqueId(), v);
         return getPoints(offlinePlayer);
     }
 
     @Override
     public double givePoints(OfflinePlayer offlinePlayer, double v) {
-        economyService.depositPlayer(offlinePlayer, v);
+        economyService.depositPlayer(offlinePlayer.getUniqueId(), v);
         return getPoints(offlinePlayer);
     }
 

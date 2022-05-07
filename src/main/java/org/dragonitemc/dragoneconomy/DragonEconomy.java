@@ -13,6 +13,7 @@ import org.dragonitemc.dragoneconomy.config.DragonEconomyMessage;
 import org.dragonitemc.dragoneconomy.db.EconomyUser;
 import org.dragonitemc.dragoneconomy.db.TransactionLog;
 import org.dragonitemc.dragoneconomy.hook.BossShopDragems;
+import org.dragonitemc.dragoneconomy.hook.PlaceholderHook;
 import org.dragonitemc.dragoneconomy.hook.WRLDPriceType;
 import org.dragonitemc.dragoneconomy.hook.WRLDRewardType;
 import org.dragonitemc.dragoneconomy.manager.AsyncEconomyManager;
@@ -42,6 +43,7 @@ public class DragonEconomy extends ELDBukkitPlugin {
         collection.addSingleton(WRLDRewardType.class);
         collection.addSingleton(WRLDPriceType.class);
         collection.addSingleton(BossShopProHooker.class);
+        collection.addSingleton(PlaceholderHook.class);
 
         SQLInstallation sqlInstallation = collection.getInstallation(SQLInstallation.class);
         sqlInstallation.bindEntities(EconomyUser.class, TransactionLog.class);

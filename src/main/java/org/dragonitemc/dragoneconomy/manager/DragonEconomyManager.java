@@ -1,7 +1,7 @@
 package org.dragonitemc.dragoneconomy.manager;
 
-import org.bukkit.OfflinePlayer;
 import org.dragonitemc.dragoneconomy.api.EconomyService;
+import org.dragonitemc.dragoneconomy.api.TransactionLogEvent;
 import org.dragonitemc.dragoneconomy.api.UpdateResult;
 import org.dragonitemc.dragoneconomy.db.EconomyUser;
 import org.dragonitemc.dragoneconomy.db.TransactionLog;
@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 public class DragonEconomyManager implements EconomyService {
 
@@ -22,24 +23,24 @@ public class DragonEconomyManager implements EconomyService {
     private EconomyUserRepository economyRepository;
 
     @Override
-    public boolean hasAccount(OfflinePlayer player) {
-        return economyRepository.existsById(player.getUniqueId());
+    public boolean hasAccount(UUID player) {
+        return economyRepository.existsById(player);
     }
 
     @Override
-    public double getBalance(OfflinePlayer player) {
-        return economyRepository.findById(player.getUniqueId()).map(EconomyUser::getBalance).orElse(0.0);
+    public double getBalance(UUID player) {
+        return economyRepository.findById(player).map(EconomyUser::getBalance).orElse(0.0);
     }
 
     @Override
-    public UpdateResult withdrawPlayer(OfflinePlayer player, double value) {
+    public UpdateResult withdrawPlayer(UUID player, double value) {
         return withdrawPlayer(player, value, "console");
     }
 
     @Transactional
     @Override
-    public UpdateResult withdrawPlayer(OfflinePlayer player, double value, String operator) {
-        var opt = economyRepository.findById(player.getUniqueId());
+    public UpdateResult withdrawPlayer(UUID player, double value, String operator) {
+        var opt = economyRepository.findById(player);
         if (opt.isEmpty()) {
             return UpdateResult.ACCOUNT_NOT_EXIST;
         }
@@ -58,24 +59,26 @@ public class DragonEconomyManager implements EconomyService {
         log.setTime(LocalDateTime.now());
         log.setAction(TransactionLog.Action.WITHDRAW);
         logRepository.save(log);
+        new TransactionLogEvent(log).callEvent();
 
         return UpdateResult.SUCCESS;
     }
 
     @Override
-    public UpdateResult depositPlayer(OfflinePlayer player, double value) {
+    public UpdateResult depositPlayer(UUID player, double value) {
         return depositPlayer(player, value, "console");
     }
 
 
+    // deposit will create account if user not exist.
     @Transactional
     @Override
-    public UpdateResult depositPlayer(OfflinePlayer player, double value, String operator) {
-        var opt = economyRepository.findById(player.getUniqueId());
-        if (opt.isEmpty()) {
-            return UpdateResult.ACCOUNT_NOT_EXIST;
-        }
-        var user = opt.get();
+    public UpdateResult depositPlayer(UUID player, double value, String operator) {
+        var user = economyRepository.findById(player).orElseGet(() -> {
+            var eco = new EconomyUser();
+            eco.setUuid(player);
+            return eco;
+        });
         var balance = user.getBalance();
         user.setBalance(balance + value);
         economyRepository.save(user);
@@ -87,23 +90,25 @@ public class DragonEconomyManager implements EconomyService {
         log.setTime(LocalDateTime.now());
         log.setAction(TransactionLog.Action.DEPOSIT);
         logRepository.save(log);
+        new TransactionLogEvent(log).callEvent();
 
         return UpdateResult.SUCCESS;
     }
 
     @Override
-    public UpdateResult setPlayer(OfflinePlayer player, double value) {
+    public UpdateResult setPlayer(UUID player, double value) {
         return setPlayer(player, value, "console");
     }
 
+    // set player will create account if user not exist.
     @Transactional
     @Override
-    public UpdateResult setPlayer(OfflinePlayer player, double value, String operator) {
-        var opt = economyRepository.findById(player.getUniqueId());
-        if (opt.isEmpty()) {
-            return UpdateResult.ACCOUNT_NOT_EXIST;
-        }
-        var user = opt.get();
+    public UpdateResult setPlayer(UUID player, double value, String operator) {
+        var user = economyRepository.findById(player).orElseGet(() -> {
+            var eco = new EconomyUser();
+            eco.setUuid(player);
+            return eco;
+        });
         user.setBalance(value);
         economyRepository.save(user);
 
@@ -114,6 +119,7 @@ public class DragonEconomyManager implements EconomyService {
         log.setTime(LocalDateTime.now());
         log.setAction(TransactionLog.Action.SET);
         logRepository.save(log);
+        new TransactionLogEvent(log).callEvent();
 
         return UpdateResult.SUCCESS;
     }
@@ -121,9 +127,9 @@ public class DragonEconomyManager implements EconomyService {
 
     @Transactional
     @Override
-    public UpdateResult transfer(OfflinePlayer from, OfflinePlayer to, double amount) {
-        var fromOpt = economyRepository.findById(from.getUniqueId());
-        var toOpt = economyRepository.findById(to.getUniqueId());
+    public UpdateResult transfer(UUID from, UUID to, double amount) {
+        var fromOpt = economyRepository.findById(from);
+        var toOpt = economyRepository.findById(to);
         if (fromOpt.isEmpty() || toOpt.isEmpty()) {
             return UpdateResult.ACCOUNT_NOT_EXIST;
         }
@@ -146,6 +152,7 @@ public class DragonEconomyManager implements EconomyService {
         log.setTime(LocalDateTime.now());
         log.setAction(TransactionLog.Action.TRANSFER);
         logRepository.save(log);
+        new TransactionLogEvent(log).callEvent();
 
         return UpdateResult.SUCCESS;
     }

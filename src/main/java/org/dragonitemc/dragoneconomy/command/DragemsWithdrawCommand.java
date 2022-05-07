@@ -31,7 +31,7 @@ public class DragemsWithdrawCommand implements CommandNode {
 
     @Override
     public void execute(CommandSender sender) {
-        economyService.withdrawPlayer(player, amount, sender.getName())
+        economyService.withdrawPlayer(player.getUniqueId(), amount, sender.getName())
                 .thenRunSync(result -> sender.sendMessage(message.getResultMessage(result)))
                 .joinWithCatch(ex -> sender.sendMessage(message.getErrorMessage(ex)));
     }

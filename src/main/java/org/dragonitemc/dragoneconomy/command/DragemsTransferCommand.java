@@ -39,7 +39,7 @@ public class DragemsTransferCommand implements CommandNode {
         }
 
         sender.sendMessage(message.getLang().get("transferring-balance", amount, self.getName(), target.getName()));
-        economyService.transfer(self, target, amount)
+        economyService.transfer(self.getUniqueId(), target.getUniqueId(), amount)
                 .thenRunSync(result -> sender.sendMessage(message.getResultMessage(result)))
                 .joinWithCatch(ex -> sender.sendMessage(message.getErrorMessage(ex)));
 
