@@ -1,6 +1,6 @@
 name: DragonEconomy
 version: ${project.version}
-main: com.dragonitemc.dragoneconomy.DragonEconomy
+main: org.dragonitemc.dragoneconomy.DragonEconomy
 loadbefore:
   - BossShopPro
 depend:
