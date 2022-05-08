@@ -79,9 +79,4 @@ public final class WRLDRewardType extends BSRewardTypeNumber {
         return true;
     }
 
-    @Override
-    public boolean allowAsync() {
-        return true;
-    }
-
 }
