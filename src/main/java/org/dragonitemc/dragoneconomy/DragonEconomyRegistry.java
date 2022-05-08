@@ -26,6 +26,8 @@ public class DragonEconomyRegistry implements ComponentsRegistry {
 
             sub.command(DragemsWithdrawCommand.class);
 
+            sub.command(DragemsSetCommand.class);
+
         });
 
         registry.command(WrldCommand.class, sub -> {

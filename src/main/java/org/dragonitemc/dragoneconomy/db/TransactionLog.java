@@ -29,6 +29,7 @@ public class TransactionLog {
     @Column
     private double amount;
 
+    @Enumerated(EnumType.STRING)
     @Column
     private Action action;
 
