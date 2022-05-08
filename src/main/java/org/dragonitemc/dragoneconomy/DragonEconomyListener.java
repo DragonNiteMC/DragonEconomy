@@ -37,7 +37,7 @@ public class DragonEconomyListener implements Listener {
                 return u;
             });
 
-            if (user.getName().equals(name)){
+            if (user.getName() != null && user.getName().equals(name)){
                 return;
             }
 
