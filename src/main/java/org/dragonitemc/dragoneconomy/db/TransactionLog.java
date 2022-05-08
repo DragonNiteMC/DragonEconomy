@@ -30,7 +30,7 @@ public class TransactionLog {
     private double amount;
 
     @Enumerated(EnumType.STRING)
-    @Column
+    @Column(length = 30)
     private Action action;
 
 

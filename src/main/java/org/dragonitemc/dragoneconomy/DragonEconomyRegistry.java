@@ -45,5 +45,6 @@ public class DragonEconomyRegistry implements ComponentsRegistry {
     @Override
     public void registerListeners(ListenerRegistry registry) {
         registry.listeners(List.of(NFTokenManager.class));
+        registry.listeners(List.of(DragonEconomyListener.class));
     }
 }
