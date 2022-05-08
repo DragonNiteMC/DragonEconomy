@@ -87,7 +87,7 @@ public final class WRLDPriceType extends BSPriceTypeNumber {
 
     @Override
     public String[] createNames() {
-        return new String[]{"4wrld"};
+        return new String[]{"$wrld", "wrld"};
     }
 
     @Override

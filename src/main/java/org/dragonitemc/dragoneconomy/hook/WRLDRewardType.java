@@ -71,7 +71,7 @@ public final class WRLDRewardType extends BSRewardTypeNumber {
 
     @Override
     public String[] createNames() {
-        return new String[]{"$wrld"};
+        return new String[]{"$wrld", "wrld"};
     }
 
     @Override
