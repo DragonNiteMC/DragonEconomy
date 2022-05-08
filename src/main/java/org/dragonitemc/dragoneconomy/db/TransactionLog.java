@@ -18,11 +18,11 @@ public class TransactionLog {
     private LocalDateTime time;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "player_id", referencedColumnName = "uuid")
+    @JoinColumn(name = "player_id", referencedColumnName = "id")
     private EconomyUser user;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "target_id", referencedColumnName = "uuid", nullable = false)
+    @JoinColumn(name = "target_id", referencedColumnName = "id", nullable = false)
     private EconomyUser target;
 
     @Column
