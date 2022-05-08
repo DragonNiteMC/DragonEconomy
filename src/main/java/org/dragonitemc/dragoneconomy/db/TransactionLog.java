@@ -1,5 +1,6 @@
 package org.dragonitemc.dragoneconomy.db;
 
+import javax.annotation.Nullable;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -17,11 +18,11 @@ public class TransactionLog {
     @Column
     private LocalDateTime time;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.REMOVE})
     @JoinColumn(name = "player_id", referencedColumnName = "id")
     private EconomyUser user;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.REMOVE})
     @JoinColumn(name = "target_id", referencedColumnName = "id", nullable = false)
     private EconomyUser target;
 
@@ -40,6 +41,7 @@ public class TransactionLog {
         this.operator = operator;
     }
 
+    @Nullable
     public EconomyUser getUser() {
         return user;
     }

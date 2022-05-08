@@ -44,17 +44,17 @@ public final class PlaceholderHook extends PlaceholderExpansion implements Liste
     @EventHandler
     public void onTransactionLog(TransactionLogEvent event){
         TransactionLog log = event.getLog();
-        economyService.getBalance(log.getUser().getId()).thenRunAsync(balance -> {
-            this.balanceCache.put(log.getUser().getId(), balance);
-            plugin.getLogger().info("Cache updated.");
+        economyService.getBalance(log.getTarget().getId()).thenRunSync(balance -> {
+            this.balanceCache.put(log.getTarget().getId(), balance);
+            plugin.getLogger().info("Cache updated: "+log.getTarget().getId());
         });
     }
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e){
-        economyService.getBalance(e.getPlayer().getUniqueId()).thenRunAsync(balance -> {
+        economyService.getBalance(e.getPlayer().getUniqueId()).thenRunSync(balance -> {
             this.balanceCache.put(e.getPlayer().getUniqueId(), balance);
-            plugin.getLogger().info("Cache updated.");
+            plugin.getLogger().info("Cache updated: "+e.getPlayer().getUniqueId());
         });
     }
 

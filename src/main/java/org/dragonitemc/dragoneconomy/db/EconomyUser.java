@@ -1,6 +1,9 @@
 package org.dragonitemc.dragoneconomy.db;
 
 
+import org.hibernate.annotations.GeneratorType;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -13,6 +16,7 @@ public class EconomyUser {
 
     @Id
     @Column(columnDefinition = "varchar(40)")
+    @Type(type = "uuid-char")
     private UUID id;
 
     @Column

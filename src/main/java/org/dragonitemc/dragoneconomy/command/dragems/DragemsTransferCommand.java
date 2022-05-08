@@ -1,4 +1,4 @@
-package org.dragonitemc.dragoneconomy.command;
+package org.dragonitemc.dragoneconomy.command.dragems;
 
 import com.ericlam.mc.eld.annotations.CommandArg;
 import com.ericlam.mc.eld.annotations.Commander;
