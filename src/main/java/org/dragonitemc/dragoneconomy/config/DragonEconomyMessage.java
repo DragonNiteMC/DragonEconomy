@@ -21,4 +21,9 @@ public class DragonEconomyMessage extends LangConfiguration {
     public String getDisplay(String currency, Object amount){
         return getLang().getPure("display."+currency, amount);
     }
+
+
+    public String getBalanceDisplay(String player, String currency, Object amount){
+        return getLang().get("balance", player, getLang().getPure("display."+currency, amount));
+    }
 }

@@ -47,6 +47,9 @@ public final class PlaceholderHook extends PlaceholderExpansion implements Liste
         economyService.getBalance(log.getTarget().getId()).thenRunSync(balance -> {
             this.balanceCache.put(log.getTarget().getId(), balance);
             plugin.getLogger().info("Cache updated: "+log.getTarget().getId());
+        }).joinWithCatch(ex -> {
+            plugin.getLogger().warning("Failed to update cache: "+ex.getMessage());
+            ex.printStackTrace();
         });
     }
 
@@ -55,6 +58,9 @@ public final class PlaceholderHook extends PlaceholderExpansion implements Liste
         economyService.getBalance(e.getPlayer().getUniqueId()).thenRunSync(balance -> {
             this.balanceCache.put(e.getPlayer().getUniqueId(), balance);
             plugin.getLogger().info("Cache updated: "+e.getPlayer().getUniqueId());
+        }).joinWithCatch(ex -> {
+            plugin.getLogger().warning("Failed to update cache: "+ex.getMessage());
+            ex.printStackTrace();
         });
     }
 

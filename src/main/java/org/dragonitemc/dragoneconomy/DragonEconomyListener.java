@@ -43,8 +43,12 @@ public class DragonEconomyListener implements Listener {
 
             user.setName(name);
             repository.save(user);
+            dragonEconomy.getLogger().info("username updated for " + name);
 
-        }).thenRunSync(v -> dragonEconomy.getLogger().info("username updated for " + name));
+        }).joinWithCatch(ex -> {
+            dragonEconomy.getLogger().warning(ex.getMessage());
+            ex.printStackTrace();
+        });
     }
 
 }

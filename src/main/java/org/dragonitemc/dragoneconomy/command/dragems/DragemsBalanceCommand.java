@@ -41,7 +41,7 @@ public class DragemsBalanceCommand implements CommandNode {
 
         sender.sendMessage(message.getLang().get("fetching-balance", player.getName()));
         economyService.getBalance(player.getUniqueId())
-                .thenRunSync(balance -> sender.sendMessage(message.getLang().get("balance", List.of(player.getName(), balance).toArray())))
+                .thenRunSync(balance -> sender.sendMessage(message.getBalanceDisplay(player.getName(), "dragems", balance)))
                 .joinWithCatch(ex -> sender.sendMessage(message.getErrorMessage(ex)));;
 
     }

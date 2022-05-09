@@ -1,7 +1,7 @@
 prefix: "&dDragonEconomy// &7"
 no-player-arg-in-console: "you must specify a player in the console"
 fetching-balance: "fetching balance for &e{0}..."
-balance: "&e{0}''s balance: &6{1} gems"
+balance: "&e{0}''s balance: &6{1}"
 not-online: "player {0} is not online"
 no-console: "you can't use this command in the console"
 transferring-balance: "transferring ${0} from &e{1} to &e{2}..."
