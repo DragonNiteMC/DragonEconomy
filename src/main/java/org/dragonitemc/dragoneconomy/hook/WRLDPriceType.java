@@ -15,6 +15,7 @@ import javax.inject.Inject;
 import java.text.MessageFormat;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public final class WRLDPriceType extends BSPriceTypeNumber {
 
@@ -40,8 +41,10 @@ public final class WRLDPriceType extends BSPriceTypeNumber {
             );
             future.get(1, TimeUnit.MINUTES);
         }catch (Throwable e) {
-            ClassManager.manager.getBugFinder().severe("$wrld 交易失敗: " + e.getMessage());
-            e.printStackTrace();
+            if (!(e instanceof TimeoutException)) {
+                ClassManager.manager.getBugFinder().severe("$wrld 交易失敗: " + e.getMessage());
+                e.printStackTrace();
+            }
         }
         return message.getDisplay("wrld", nfTokenService.getTokenPrice(player));
     }
