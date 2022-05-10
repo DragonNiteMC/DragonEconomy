@@ -35,8 +35,8 @@ public final class PlaceholderHook extends PlaceholderExpansion implements Liste
     @Override
     public @Nullable String onRequest(OfflinePlayer player, @NotNull String params) {
         return switch (params.toLowerCase(Locale.ROOT)) {
-            case "balance" -> String.valueOf(balanceCache.getOrDefault(player.getUniqueId(), 0.0));
-            case "wrld" -> String.valueOf(nfTokenService.getTokenPrice(player));
+            case "balance" -> String.format("%.2f", balanceCache.getOrDefault(player.getUniqueId(), 0.0));
+            case "wrld" -> String.format("%.2f", nfTokenService.getTokenPrice(player));
             default -> null;
         };
     }
