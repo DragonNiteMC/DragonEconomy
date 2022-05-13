@@ -33,8 +33,12 @@ public class WrldDepositCommand implements CommandNode {
 
     @Override
     public void execute(CommandSender sender) {
-        tokenService.depositToken(player, amount, String.format("管理員 %s 的指令轉移", sender.getName()))
-                .thenRunSync(v -> sender.sendMessage(message.getResultMessage(UpdateResult.SUCCESS)))
-                .joinWithCatch(ex -> sender.sendMessage(message.getErrorMessage(ex)));
+        try {
+            tokenService.depositToken(player, amount, String.format("管理員 %s 的指令轉移", sender.getName()));
+            sender.sendMessage(message.getResultMessage(UpdateResult.SUCCESS));
+        } catch (Exception ex) {
+            sender.sendMessage(message.getErrorMessage(ex));
+        }
+
     }
 }

@@ -1,6 +1,5 @@
 package org.dragonitemc.dragoneconomy.api;
 
-import com.ericlam.mc.eld.services.ScheduleService;
 import com.nftworlds.wallet.event.PeerToPeerPayEvent;
 import com.nftworlds.wallet.event.PlayerTransactEvent;
 import org.bukkit.OfflinePlayer;
@@ -12,7 +11,7 @@ public interface NFTokenService {
 
     double getTokenPrice(OfflinePlayer player);
 
-    ScheduleService.BukkitPromise<Void> depositToken(OfflinePlayer player, double amount, String reason);
+    void depositToken(OfflinePlayer player, double amount, String reason);
 
     <T> void withdrawToken(Player player, double amount, T payload, String reason, Consumer<PlayerTransactEvent<T>> callback);
 

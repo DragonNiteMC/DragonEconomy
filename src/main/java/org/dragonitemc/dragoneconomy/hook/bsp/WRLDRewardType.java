@@ -1,4 +1,4 @@
-package org.dragonitemc.dragoneconomy.hook;
+package org.dragonitemc.dragoneconomy.hook.bsp;
 
 import jnr.ffi.annotations.In;
 import org.black_ixx.bossshop.core.BSBuy;
@@ -29,8 +29,7 @@ public final class WRLDRewardType extends BSRewardTypeNumber {
     public void giveReward(Player player, BSBuy bsBuy, Object o, ClickType clickType, int i) {
         try {
             double reward = ClassManager.manager.getMultiplierHandler().calculateRewardWithMultiplier(player, bsBuy, clickType, (double) o) * i;
-            // 使用了阻塞運行
-            nfTokenService.depositToken(player, reward, MessageFormat.format("在 {0} 商店的交易", bsBuy.getShop().getDisplayName())).block();
+            nfTokenService.depositToken(player, reward, MessageFormat.format("在 {0} 商店的交易", bsBuy.getShop().getDisplayName()));
         } catch (Throwable e) {
             e.printStackTrace();
             ClassManager.manager.getBugFinder().severe("$wrld 交易失敗: " + e.getMessage());

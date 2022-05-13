@@ -40,10 +40,8 @@ public final class NFTokenManager implements NFTokenService, Listener {
     }
 
     @Override
-    public ScheduleService.BukkitPromise<Void> depositToken(OfflinePlayer player, double amount, String reason) {
-        return scheduleService.runAsync(dragonEconomy, () -> {
-            walletAPI.getNFTPlayer(player.getUniqueId()).sendWRLD(amount, Network.POLYGON, reason);
-        });
+    public void depositToken(OfflinePlayer player, double amount, String reason) {
+        walletAPI.getNFTPlayer(player.getUniqueId()).sendWRLD(amount, Network.POLYGON, reason);
     }
 
     @Override

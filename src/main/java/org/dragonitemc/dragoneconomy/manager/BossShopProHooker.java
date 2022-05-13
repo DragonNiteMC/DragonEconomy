@@ -8,8 +8,8 @@ import org.black_ixx.bossshop.managers.ClassManager;
 import org.black_ixx.bossshop.managers.features.PointsManager;
 import org.bukkit.plugin.Plugin;
 import org.dragonitemc.dragoneconomy.hook.BossShopDragems;
-import org.dragonitemc.dragoneconomy.hook.WRLDPriceType;
-import org.dragonitemc.dragoneconomy.hook.WRLDRewardType;
+import org.dragonitemc.dragoneconomy.hook.bsp.WRLDPriceType;
+import org.dragonitemc.dragoneconomy.hook.bsp.WRLDRewardType;
 
 import javax.inject.Inject;
 import java.util.ArrayList;

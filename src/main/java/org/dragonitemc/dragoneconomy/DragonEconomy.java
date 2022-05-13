@@ -14,8 +14,12 @@ import org.dragonitemc.dragoneconomy.db.EconomyUser;
 import org.dragonitemc.dragoneconomy.db.TransactionLog;
 import org.dragonitemc.dragoneconomy.hook.BossShopDragems;
 import org.dragonitemc.dragoneconomy.hook.PlaceholderHook;
-import org.dragonitemc.dragoneconomy.hook.WRLDPriceType;
-import org.dragonitemc.dragoneconomy.hook.WRLDRewardType;
+import org.dragonitemc.dragoneconomy.hook.bsp.WRLDPriceType;
+import org.dragonitemc.dragoneconomy.hook.bsp.WRLDRewardType;
+import org.dragonitemc.dragoneconomy.hook.dshop.GemsPrice;
+import org.dragonitemc.dragoneconomy.hook.dshop.GemsReward;
+import org.dragonitemc.dragoneconomy.hook.dshop.WRLDPrice;
+import org.dragonitemc.dragoneconomy.hook.dshop.WRLDReward;
 import org.dragonitemc.dragoneconomy.manager.AsyncEconomyManager;
 import org.dragonitemc.dragoneconomy.manager.BossShopProHooker;
 import org.dragonitemc.dragoneconomy.manager.DragonEconomyManager;
@@ -40,8 +44,15 @@ public class DragonEconomy extends ELDBukkitPlugin {
 
         collection.addSingleton(WalletAPI.class);
         collection.addSingleton(BossShopDragems.class);
+
         collection.addSingleton(WRLDRewardType.class);
         collection.addSingleton(WRLDPriceType.class);
+
+        collection.addSingleton(WRLDPrice.class);
+        collection.addSingleton(WRLDReward.class);
+        collection.addSingleton(GemsPrice.class);
+        collection.addSingleton(GemsReward.class);
+
         collection.addSingleton(BossShopProHooker.class);
         collection.addSingleton(PlaceholderHook.class);
 

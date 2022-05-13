@@ -1,4 +1,4 @@
-package org.dragonitemc.dragoneconomy.hook;
+package org.dragonitemc.dragoneconomy.hook.bsp;
 
 import com.nftworlds.wallet.event.PlayerTransactEvent;
 import org.black_ixx.bossshop.core.BSBuy;
