@@ -21,6 +21,9 @@ public final class WRLDPrice extends AsyncPriceTask<Double> {
 
     @Override
     public CompletableFuture<PurchaseResult> doPurchaseAsync(Double price, Player player) {
+        if (tokenService.getTokenPrice(player) < price){
+            return CompletableFuture.completedFuture(PurchaseResult.failed("insufficient tokens"));
+        }
         CompletableFuture<PurchaseResult> future = new CompletableFuture<>();
         tokenService.withdrawToken(player, price, "DragonEconomy", "&eDragonShop 交易&r", (result) -> {
             future.complete(PurchaseResult.success());
