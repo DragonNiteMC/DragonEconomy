@@ -19,6 +19,6 @@ public class FERCheckCommand implements CommandNode {
 
     @Override
     public void execute(CommandSender commandSender) {
-        commandSender.sendMessage("目前的浮動匯率是: " + ferService.getExchangeRate() + " Gems : 1 WRLD");
+        commandSender.sendMessage(String.format("目前的浮動匯率是: %.3f Gems : 1 WRLD", (1 / ferService.getExchangeRate())));
     }
 }
