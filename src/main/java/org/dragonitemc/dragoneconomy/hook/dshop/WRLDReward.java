@@ -6,7 +6,7 @@ import org.dragonitemc.dragonshop.api.RewardTask;
 
 import javax.inject.Inject;
 
-public class WRLDReward extends RewardTask<Double> {
+public class WRLDReward extends RewardTask<Object> {
 
     @Inject
     private NFTokenService tokenService;
@@ -17,7 +17,8 @@ public class WRLDReward extends RewardTask<Double> {
 
 
     @Override
-    public void giveReward(Double price, Player player) {
+    public void giveReward(Object c, Player player) {
+        var price = GemsPrice.toDouble(c, player);
         tokenService.depositToken(player, price, "&eDragonShop 的交易");
     }
 }

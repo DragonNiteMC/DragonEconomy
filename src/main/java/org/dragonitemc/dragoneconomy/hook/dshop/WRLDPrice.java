@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
-public final class WRLDPrice extends AsyncPriceTask<Double> {
+public final class WRLDPrice extends AsyncPriceTask<Object> {
 
 
     @Inject
@@ -20,7 +20,8 @@ public final class WRLDPrice extends AsyncPriceTask<Double> {
     }
 
     @Override
-    public CompletableFuture<PurchaseResult> doPurchaseAsync(Double price, Player player) {
+    public CompletableFuture<PurchaseResult> doPurchaseAsync(Object content, Player player) {
+        var price = GemsPrice.toDouble(content, player);
         if (tokenService.getTokenPrice(player) < price){
             return CompletableFuture.completedFuture(PurchaseResult.failed("insufficient tokens"));
         }
@@ -32,7 +33,8 @@ public final class WRLDPrice extends AsyncPriceTask<Double> {
     }
 
     @Override
-    public CompletableFuture<Void> doRollBackAsync(Double aDouble, Player player) {
+    public CompletableFuture<Void> doRollBackAsync(Object content, Player player) {
+        var aDouble = GemsPrice.toDouble(content, player);
         tokenService.depositToken(player, aDouble,  "&eDragonShop 交易&r");
         return CompletableFuture.completedFuture(null);
     }
