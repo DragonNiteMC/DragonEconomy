@@ -1,5 +1,6 @@
 package org.dragonitemc.dragoneconomy.hook.dshop;
 
+import com.ericlam.mc.eld.misc.DebugLogger;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
 import org.dragonitemc.dragoneconomy.api.EconomyService;
@@ -26,6 +27,10 @@ public final class GemsPrice extends AsyncPriceTask<Object> {
     }
 
     static double toDouble(Object price, Player player){
+
+        if (price == null){
+            return 0;
+        }
 
         if (price instanceof Double){
             return (double) price;

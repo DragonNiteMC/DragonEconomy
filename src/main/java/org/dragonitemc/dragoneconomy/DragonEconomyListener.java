@@ -1,5 +1,7 @@
 package org.dragonitemc.dragoneconomy;
 
+import com.ericlam.mc.eld.misc.DebugLogger;
+import com.ericlam.mc.eld.services.LoggingService;
 import com.ericlam.mc.eld.services.ScheduleService;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -22,11 +24,28 @@ public class DragonEconomyListener implements Listener {
     @Inject
     private DragonEconomy dragonEconomy;
 
+    private final DebugLogger logger;
+
+
+    @Inject
+    public DragonEconomyListener(LoggingService loggingService){
+        this.logger = loggingService.getLogger(DragonEconomyListener.class);
+    }
+
     @EventHandler
     public void onTransactionLog(TransactionLogEvent e) {
 
-        var uuid = e.getLog().getTarget().getId();
+        var log = e.getLog();
+        var uuid = log.getTarget().getId();
         var name = Bukkit.getOfflinePlayer(uuid).getName();
+
+        logger.infoF("[Log] %s %s %.2f gems to %s at %s",
+                log.getUser() == null ? log.getOperator() : log.getUser().getName(),
+                log.getAction().toString().toLowerCase(),
+                log.getAmount(),
+                log.getTarget().getName(),
+                log.getTime().toString()
+        );
 
         scheduleService.runAsync(dragonEconomy, () -> {
 
