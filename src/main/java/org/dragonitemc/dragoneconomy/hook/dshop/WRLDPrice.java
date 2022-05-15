@@ -5,18 +5,17 @@ import org.dragonitemc.dragoneconomy.api.NFTokenService;
 import org.dragonitemc.dragonshop.api.AsyncPriceTask;
 import org.dragonitemc.dragonshop.api.PurchaseResult;
 
-import javax.inject.Inject;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 public final class WRLDPrice extends AsyncPriceTask<Object> {
 
 
-    @Inject
-    private NFTokenService tokenService;
+    private final NFTokenService tokenService;
 
-    public WRLDPrice() {
+    public WRLDPrice(NFTokenService tokenService) {
         super("wrld");
+        this.tokenService = tokenService;
     }
 
     @Override

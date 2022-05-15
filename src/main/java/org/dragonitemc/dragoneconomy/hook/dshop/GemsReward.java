@@ -5,20 +5,19 @@ import org.dragonitemc.dragoneconomy.api.EconomyService;
 import org.dragonitemc.dragoneconomy.config.DragonEconomyMessage;
 import org.dragonitemc.dragonshop.api.AsyncRewardTask;
 
-import javax.inject.Inject;
 import java.util.concurrent.CompletableFuture;
 
 public final class GemsReward extends AsyncRewardTask<Object> {
 
 
-    @Inject
-    private DragonEconomyMessage msg;
+    private final DragonEconomyMessage msg;
 
-    @Inject
-    private EconomyService economyService;
+    private final EconomyService economyService;
 
-    public GemsReward() {
+    public GemsReward(DragonEconomyMessage msg, EconomyService economyService) {
         super("gems");
+        this.msg = msg;
+        this.economyService = economyService;
     }
 
     @Override

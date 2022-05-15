@@ -1,6 +1,5 @@
 package org.dragonitemc.dragoneconomy.hook.dshop;
 
-import com.ericlam.mc.eld.misc.DebugLogger;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
 import org.dragonitemc.dragoneconomy.api.EconomyService;
@@ -10,20 +9,17 @@ import org.dragonitemc.dragonshop.ShopException;
 import org.dragonitemc.dragonshop.api.AsyncPriceTask;
 import org.dragonitemc.dragonshop.api.PurchaseResult;
 
-import javax.inject.Inject;
 import java.util.concurrent.CompletableFuture;
 
 public final class GemsPrice extends AsyncPriceTask<Object> {
 
-    @Inject
-    private EconomyService economyService;
+    private final EconomyService economyService;
+    private final DragonEconomyMessage msg;
 
-    @Inject
-    private DragonEconomyMessage msg;
-
-    public GemsPrice() {
+    public GemsPrice(EconomyService economyService, DragonEconomyMessage msg) {
         super("gems");
-
+        this.economyService = economyService;
+        this.msg = msg;
     }
 
     static double toDouble(Object price, Player player){

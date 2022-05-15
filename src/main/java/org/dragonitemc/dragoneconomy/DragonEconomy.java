@@ -14,11 +14,8 @@ import org.dragonitemc.dragoneconomy.config.DragonEconomyMessage;
 import org.dragonitemc.dragoneconomy.db.EconomyUser;
 import org.dragonitemc.dragoneconomy.db.TransactionLog;
 import org.dragonitemc.dragoneconomy.hook.DragonShopHook;
+import org.dragonitemc.dragoneconomy.hook.DragonEconomyPlaceholder;
 import org.dragonitemc.dragoneconomy.hook.PlaceholderHook;
-import org.dragonitemc.dragoneconomy.hook.dshop.GemsPrice;
-import org.dragonitemc.dragoneconomy.hook.dshop.GemsReward;
-import org.dragonitemc.dragoneconomy.hook.dshop.WRLDPrice;
-import org.dragonitemc.dragoneconomy.hook.dshop.WRLDReward;
 import org.dragonitemc.dragoneconomy.manager.AsyncEconomyManager;
 import org.dragonitemc.dragoneconomy.manager.DragonEconomyManager;
 import org.dragonitemc.dragoneconomy.manager.FERManager;
@@ -43,11 +40,6 @@ public class DragonEconomy extends ELDBukkitPlugin {
         collection.bindService(FERService.class, FERManager.class);
 
         collection.addSingleton(WalletAPI.class);
-
-        collection.addSingleton(WRLDPrice.class);
-        collection.addSingleton(WRLDReward.class);
-        collection.addSingleton(GemsPrice.class);
-        collection.addSingleton(GemsReward.class);
 
         collection.addSingleton(PlaceholderHook.class);
         collection.addSingleton(DragonShopHook.class);

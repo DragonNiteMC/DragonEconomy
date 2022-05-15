@@ -4,15 +4,13 @@ import org.bukkit.entity.Player;
 import org.dragonitemc.dragoneconomy.api.NFTokenService;
 import org.dragonitemc.dragonshop.api.RewardTask;
 
-import javax.inject.Inject;
-
 public class WRLDReward extends RewardTask<Object> {
 
-    @Inject
-    private NFTokenService tokenService;
+    private final NFTokenService tokenService;
 
-    public WRLDReward() {
+    public WRLDReward(NFTokenService tokenService) {
         super("wrld");
+        this.tokenService = tokenService;
     }
 
 
