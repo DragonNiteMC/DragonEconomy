@@ -41,7 +41,7 @@ public final class PlaceholderHook extends PlaceholderExpansion implements Liste
         return switch (params.toLowerCase(Locale.ROOT)) {
             case "balance" -> String.format("%.2f", balanceCache.getOrDefault(player.getUniqueId(), 0.0));
             case "wrld" -> String.format("%.2f", nfTokenService.getTokenPrice(player));
-            case "fer" -> String.format("%.2f", ferService.getExchangeRate());
+            case "fer" -> String.format("%.8f", ferService.getExchangeRate());
             default -> null;
         };
     }
