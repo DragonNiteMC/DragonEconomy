@@ -1,8 +1,6 @@
 name: DragonEconomy
 version: ${project.version}
 main: org.dragonitemc.dragoneconomy.DragonEconomy
-loadbefore:
-  - BossShopPro
 softdepend:
   - BossShopPro
   - PlaceholderAPI

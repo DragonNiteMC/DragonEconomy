@@ -4,6 +4,10 @@ import com.ericlam.mc.eld.registrations.CommandRegistry;
 import com.ericlam.mc.eld.registrations.ComponentsRegistry;
 import com.ericlam.mc.eld.registrations.ListenerRegistry;
 import org.dragonitemc.dragoneconomy.command.dragems.*;
+import org.dragonitemc.dragoneconomy.command.fer.FERCheckCommand;
+import org.dragonitemc.dragoneconomy.command.fer.FERCommand;
+import org.dragonitemc.dragoneconomy.command.fer.FERRefreshCommand;
+import org.dragonitemc.dragoneconomy.command.fer.FERSetCommand;
 import org.dragonitemc.dragoneconomy.command.wrld.*;
 import org.dragonitemc.dragoneconomy.manager.NFTokenManager;
 
@@ -36,6 +40,17 @@ public class DragonEconomyRegistry implements ComponentsRegistry {
             sub.command(WrldTransferCommand.class);
 
             sub.command(WrldBalanceCommand.class);
+
+        });
+
+
+        registry.command(FERCommand.class, sub ->{
+
+            sub.command(FERCheckCommand.class);
+
+            sub.command(FERRefreshCommand.class);
+
+            sub.command(FERSetCommand.class);
 
         });
 

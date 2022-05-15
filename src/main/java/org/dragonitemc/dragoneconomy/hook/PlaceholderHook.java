@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.dragonitemc.dragoneconomy.DragonEconomy;
 import org.dragonitemc.dragoneconomy.api.AsyncEconomyService;
+import org.dragonitemc.dragoneconomy.api.FERService;
 import org.dragonitemc.dragoneconomy.api.NFTokenService;
 import org.dragonitemc.dragoneconomy.api.TransactionLogEvent;
 import org.dragonitemc.dragoneconomy.db.TransactionLog;
@@ -30,6 +31,9 @@ public final class PlaceholderHook extends PlaceholderExpansion implements Liste
     @Inject
     private NFTokenService nfTokenService;
 
+    @Inject
+    private FERService ferService;
+
     private final Map<UUID, Double> balanceCache = new ConcurrentHashMap<>();
 
     @Override
@@ -37,6 +41,7 @@ public final class PlaceholderHook extends PlaceholderExpansion implements Liste
         return switch (params.toLowerCase(Locale.ROOT)) {
             case "balance" -> String.format("%.2f", balanceCache.getOrDefault(player.getUniqueId(), 0.0));
             case "wrld" -> String.format("%.2f", nfTokenService.getTokenPrice(player));
+            case "fer" -> String.format("%.2f", ferService.getExchangeRate());
             default -> null;
         };
     }

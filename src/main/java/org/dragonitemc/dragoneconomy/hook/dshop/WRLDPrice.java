@@ -30,4 +30,10 @@ public final class WRLDPrice extends AsyncPriceTask<Double> {
         });
         return future.completeOnTimeout(PurchaseResult.failed("&c交易失敗或逾時"), 1, TimeUnit.MINUTES);
     }
+
+    @Override
+    public CompletableFuture<Void> doRollBackAsync(Double aDouble, Player player) {
+        tokenService.depositToken(player, aDouble,  "&eDragonShop 交易&r");
+        return CompletableFuture.completedFuture(null);
+    }
 }
