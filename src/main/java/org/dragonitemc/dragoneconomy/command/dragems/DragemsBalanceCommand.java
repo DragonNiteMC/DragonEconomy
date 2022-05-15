@@ -7,11 +7,9 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.dragonitemc.dragoneconomy.api.AsyncEconomyService;
-import org.dragonitemc.dragoneconomy.api.EconomyService;
 import org.dragonitemc.dragoneconomy.config.DragonEconomyMessage;
 
 import javax.inject.Inject;
-import java.util.List;
 
 @Commander(
         name = "balance",

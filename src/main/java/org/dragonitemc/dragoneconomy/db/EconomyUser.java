@@ -1,7 +1,6 @@
 package org.dragonitemc.dragoneconomy.db;
 
 
-import org.hibernate.annotations.GeneratorType;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
@@ -18,7 +17,6 @@ public class EconomyUser {
     @Column(columnDefinition = "varchar(40)")
     @Type(type = "uuid-char")
     private UUID id;
-
 
 
     @Column

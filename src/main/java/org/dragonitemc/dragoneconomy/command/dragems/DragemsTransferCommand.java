@@ -7,7 +7,6 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.dragonitemc.dragoneconomy.api.AsyncEconomyService;
-import org.dragonitemc.dragoneconomy.api.UpdateResult;
 import org.dragonitemc.dragoneconomy.config.DragonEconomyMessage;
 
 import javax.inject.Inject;

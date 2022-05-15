@@ -6,7 +6,6 @@ import com.ericlam.mc.eld.services.ScheduleService;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.dragonitemc.dragoneconomy.api.TransactionLogEvent;
 import org.dragonitemc.dragoneconomy.db.EconomyUser;
 import org.dragonitemc.dragoneconomy.repository.EconomyUserRepository;
