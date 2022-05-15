@@ -13,6 +13,7 @@ import org.dragonitemc.dragoneconomy.api.NFTokenService;
 import org.dragonitemc.dragoneconomy.config.DragonEconomyMessage;
 import org.dragonitemc.dragoneconomy.db.EconomyUser;
 import org.dragonitemc.dragoneconomy.db.TransactionLog;
+import org.dragonitemc.dragoneconomy.hook.DragonShopHook;
 import org.dragonitemc.dragoneconomy.hook.PlaceholderHook;
 import org.dragonitemc.dragoneconomy.hook.dshop.GemsPrice;
 import org.dragonitemc.dragoneconomy.hook.dshop.GemsReward;
@@ -49,6 +50,7 @@ public class DragonEconomy extends ELDBukkitPlugin {
         collection.addSingleton(GemsReward.class);
 
         collection.addSingleton(PlaceholderHook.class);
+        collection.addSingleton(DragonShopHook.class);
 
         SQLInstallation sqlInstallation = collection.getInstallation(SQLInstallation.class);
         sqlInstallation.bindEntities(EconomyUser.class, TransactionLog.class);

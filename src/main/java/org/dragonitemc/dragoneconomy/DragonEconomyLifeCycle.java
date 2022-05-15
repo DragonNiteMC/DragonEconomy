@@ -2,12 +2,8 @@ package org.dragonitemc.dragoneconomy;
 
 import com.ericlam.mc.eld.ELDLifeCycle;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.dragonitemc.dragoneconomy.hook.DragonShopHook;
 import org.dragonitemc.dragoneconomy.hook.PlaceholderHook;
-import org.dragonitemc.dragoneconomy.hook.dshop.GemsPrice;
-import org.dragonitemc.dragoneconomy.hook.dshop.GemsReward;
-import org.dragonitemc.dragoneconomy.hook.dshop.WRLDPrice;
-import org.dragonitemc.dragoneconomy.hook.dshop.WRLDReward;
-import org.dragonitemc.dragonshop.api.ShopTaskService;
 
 import javax.inject.Inject;
 
@@ -17,17 +13,7 @@ public class DragonEconomyLifeCycle implements ELDLifeCycle {
     private PlaceholderHook placeholderHook;
 
     @Inject
-    private GemsReward gemsReward;
-    @Inject
-    private GemsPrice gemsPrice;
-    @Inject
-    private WRLDReward wrldReward;
-    @Inject
-    private WRLDPrice wrldPrice;
-
-
-    @Inject
-    private ShopTaskService taskService;
+    private DragonShopHook dragonShopHook;
 
     @Override
     public void onEnable(JavaPlugin plugin) {
@@ -37,11 +23,11 @@ public class DragonEconomyLifeCycle implements ELDLifeCycle {
             plugin.getServer().getPluginManager().registerEvents(placeholderHook, plugin);
         }
 
-        taskService.addPriceTask(gemsPrice);
-        taskService.addRewardTask(gemsReward);
 
-        taskService.addPriceTask(wrldPrice);
-        taskService.addRewardTask(wrldReward);
+        if (plugin.getServer().getPluginManager().getPlugin("DragonShop") != null) {
+            plugin.getLogger().info("DragonShop is found, hooking into DragonShop...");
+            dragonShopHook.hook();
+        }
 
     }
 

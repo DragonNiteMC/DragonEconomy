@@ -3,7 +3,7 @@ version: ${project.version}
 main: org.dragonitemc.dragoneconomy.DragonEconomy
 softdepend:
   - PlaceholderAPI
+  - DragonShop
 depend:
   - Eld-SQL-DNMC-Bridge
   - WRLDPaymentsAPI
-  - DragonShop
