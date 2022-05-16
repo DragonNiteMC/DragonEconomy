@@ -1,5 +1,7 @@
 package org.dragonitemc.dragoneconomy.manager;
 
+import com.ericlam.mc.eld.misc.DebugLogger;
+import com.ericlam.mc.eld.services.LoggingService;
 import com.ericlam.mc.eld.services.ScheduleService;
 import com.nftworlds.wallet.api.WalletAPI;
 import com.nftworlds.wallet.event.PeerToPeerPayEvent;
@@ -32,6 +34,12 @@ public final class NFTokenManager implements NFTokenService, Listener {
 
     private final Map<UUID, Consumer<PlayerTransactEvent<?>>> trasactCallbackMap = new ConcurrentHashMap<>();
     private final Map<String, Consumer<PeerToPeerPayEvent>> peerCallbackMap = new ConcurrentHashMap<>();
+    private final DebugLogger logger;
+
+    @Inject
+    public NFTokenManager(LoggingService loggingService) {
+        this.logger = loggingService.getLogger(NFTokenService.class);
+    }
 
 
     @Override
@@ -69,17 +77,25 @@ public final class NFTokenManager implements NFTokenService, Listener {
     @EventHandler
     public void onPlayerTransact(PlayerTransactEvent<?> e) {
         if (!(e.getPayload() instanceof DragonEconomyPayload dragonPayload)) return;
+        logger.infoF("WRLD Transaction Completed for %s, Reason: %s, Amount: %.2f, Id: %s",
+                e.getPlayer().getName(), e.getReason(), e.getAmount(), dragonPayload.getId());
         var callback = this.trasactCallbackMap.remove(dragonPayload.getId());
         if (callback == null) return;
         callback.accept(e);
+        logger.debugF("WRLD Transaction Callback completed for %s, Reason: %s, Amount: %.2f, Id: %s",
+                e.getPlayer().getName(), e.getReason(), e.getAmount(), dragonPayload.getId());
     }
 
     @EventHandler
     public void onPeerToPeerPay(PeerToPeerPayEvent e) {
         var reasonStr = e.getReason();
         var id = reasonStr.split(":")[0];
+        logger.infoF("WRLD PeerToPeer Transaction Completed for %s, Reason: %s, Amount: %.2f, Id: %s",
+                e.getFrom().getName(), e.getReason(), e.getAmount(), id);
         var callback = this.peerCallbackMap.remove(id);
         if (callback == null) return;
         callback.accept(e);
+        logger.debugF("WRLD PeerToPeer Transaction Callback completed for %s, Reason: %s, Amount: %.2f, Id: %s",
+                e.getFrom().getName(), e.getReason(), e.getAmount(), id);
     }
 }
