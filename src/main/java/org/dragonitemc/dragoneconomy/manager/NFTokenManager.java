@@ -16,11 +16,13 @@ import org.dragonitemc.dragoneconomy.api.NFTokenService;
 import org.dragonitemc.dragoneconomy.payload.DragonEconomyPayload;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
+@Singleton
 public final class NFTokenManager implements NFTokenService, Listener {
 
     @Inject
@@ -53,6 +55,7 @@ public final class NFTokenManager implements NFTokenService, Listener {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T> void withdrawToken(Player player, double amount, T payload, String reason, Consumer<PlayerTransactEvent<T>> callback) {
         scheduleService.runAsync(dragonEconomy, () -> {
             var economyPayload = new DragonEconomyPayload<>(payload);
