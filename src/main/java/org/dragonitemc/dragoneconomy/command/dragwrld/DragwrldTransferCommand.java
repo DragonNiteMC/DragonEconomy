@@ -1,8 +1,8 @@
-package org.dragonitemc.dragoneconomy.command.dragems;
+package org.dragonitemc.dragoneconomy.command.dragwrld;
 
 import com.ericlam.mc.eld.annotations.CommandArg;
 import com.ericlam.mc.eld.annotations.Commander;
-import com.ericlam.mc.eld.components.CommandNode;
+import com.ericlam.mc.eld.bukkit.CommandNode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -16,7 +16,7 @@ import javax.inject.Inject;
         name = "transfer",
         description = "金錢轉移到另一個玩家"
 )
-public class DragemsTransferCommand implements CommandNode {
+public class DragwrldTransferCommand implements CommandNode {
 
     @Inject
     private AsyncEconomyService economyService;

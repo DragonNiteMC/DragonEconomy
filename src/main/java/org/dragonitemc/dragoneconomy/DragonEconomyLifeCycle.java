@@ -1,6 +1,6 @@
 package org.dragonitemc.dragoneconomy;
 
-import com.ericlam.mc.eld.ELDLifeCycle;
+import com.ericlam.mc.eld.bukkit.ELDLifeCycle;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.dragonitemc.dragoneconomy.hook.PlaceholderHook;
 

@@ -1,10 +1,7 @@
 package org.dragonitemc.dragoneconomy;
 
 import chu77.eldependenci.sql.SQLInstallation;
-import com.ericlam.mc.eld.ELDBukkitPlugin;
-import com.ericlam.mc.eld.ManagerProvider;
-import com.ericlam.mc.eld.ServiceCollection;
-import com.ericlam.mc.eld.annotations.ELDPlugin;
+import com.ericlam.mc.eld.*;
 import com.nftworlds.wallet.api.WalletAPI;
 import org.dragonitemc.dragoneconomy.api.AsyncEconomyService;
 import org.dragonitemc.dragoneconomy.api.EconomyService;
@@ -21,14 +18,14 @@ import org.dragonitemc.dragoneconomy.manager.NFTokenManager;
 import org.dragonitemc.dragoneconomy.repository.EconomyUserRepository;
 import org.dragonitemc.dragoneconomy.repository.TransactionLogRepository;
 
-@ELDPlugin(
+@ELDBukkit(
         lifeCycle = DragonEconomyLifeCycle.class,
         registry = DragonEconomyRegistry.class
 )
 public class DragonEconomy extends ELDBukkitPlugin {
 
     @Override
-    protected void bindServices(ServiceCollection collection) {
+    public void bindServices(ServiceCollection collection) {
 
         collection.addConfiguration(DragonEconomyMessage.class);
 
@@ -50,7 +47,7 @@ public class DragonEconomy extends ELDBukkitPlugin {
 
 
     @Override
-    protected void manageProvider(ManagerProvider provider) {
+    protected void manageProvider(BukkitManagerProvider provider) {
 
     }
 }

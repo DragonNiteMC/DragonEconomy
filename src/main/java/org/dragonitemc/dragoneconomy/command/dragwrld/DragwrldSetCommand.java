@@ -1,8 +1,8 @@
-package org.dragonitemc.dragoneconomy.command.dragems;
+package org.dragonitemc.dragoneconomy.command.dragwrld;
 
 import com.ericlam.mc.eld.annotations.CommandArg;
 import com.ericlam.mc.eld.annotations.Commander;
-import com.ericlam.mc.eld.components.CommandNode;
+import com.ericlam.mc.eld.bukkit.CommandNode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.dragonitemc.dragoneconomy.api.AsyncEconomyService;
@@ -11,11 +11,11 @@ import org.dragonitemc.dragoneconomy.config.DragonEconomyMessage;
 import javax.inject.Inject;
 
 @Commander(
-        name = "withdraw",
-        description = "向玩家提取金錢",
+        name = "set",
+        description = "設置金錢",
         permission = "dragoneconomy.admin"
 )
-public class DragemsWithdrawCommand implements CommandNode {
+public class DragwrldSetCommand implements CommandNode {
 
     @Inject
     private DragonEconomyMessage message;
@@ -31,7 +31,7 @@ public class DragemsWithdrawCommand implements CommandNode {
 
     @Override
     public void execute(CommandSender sender) {
-        economyService.withdrawPlayer(player.getUniqueId(), amount, sender.getName())
+        economyService.setPlayer(player.getUniqueId(), amount, sender.getName())
                 .thenRunSync(result -> sender.sendMessage(message.getResultMessage(result)))
                 .joinWithCatch(ex -> sender.sendMessage(message.getErrorMessage(ex)));
     }

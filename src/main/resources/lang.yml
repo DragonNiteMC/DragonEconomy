@@ -16,4 +16,4 @@ result:
   ERROR: "&coperation failed: {0}"
 display:
   wrld: "{0} $wrld"
-  dragems: "{0} gems"
+  dragwrld: "{0} $wrld"

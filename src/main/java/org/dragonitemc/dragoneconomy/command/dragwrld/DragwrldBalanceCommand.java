@@ -1,8 +1,8 @@
-package org.dragonitemc.dragoneconomy.command.dragems;
+package org.dragonitemc.dragoneconomy.command.dragwrld;
 
 import com.ericlam.mc.eld.annotations.CommandArg;
 import com.ericlam.mc.eld.annotations.Commander;
-import com.ericlam.mc.eld.components.CommandNode;
+import com.ericlam.mc.eld.bukkit.CommandNode;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -15,7 +15,7 @@ import javax.inject.Inject;
         name = "balance",
         description = "查詢餘額"
 )
-public class DragemsBalanceCommand implements CommandNode {
+public class DragwrldBalanceCommand implements CommandNode {
 
     @Inject
     private DragonEconomyMessage message;
@@ -39,7 +39,7 @@ public class DragemsBalanceCommand implements CommandNode {
 
         sender.sendMessage(message.getLang().get("fetching-balance", player.getName()));
         economyService.getBalance(player.getUniqueId())
-                .thenRunSync(balance -> sender.sendMessage(message.getBalanceDisplay(player.getName(), "dragems", balance)))
+                .thenRunSync(balance -> sender.sendMessage(message.getBalanceDisplay(player.getName(), "dragwrld", balance)))
                 .joinWithCatch(ex -> sender.sendMessage(message.getErrorMessage(ex)));;
 
     }

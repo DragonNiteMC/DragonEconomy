@@ -1,9 +1,11 @@
 package org.dragonitemc.dragoneconomy;
 
-import com.ericlam.mc.eld.registrations.CommandRegistry;
-import com.ericlam.mc.eld.registrations.ComponentsRegistry;
-import com.ericlam.mc.eld.registrations.ListenerRegistry;
-import org.dragonitemc.dragoneconomy.command.dragems.*;
+import com.ericlam.mc.eld.bukkit.CommandNode;
+import com.ericlam.mc.eld.bukkit.ComponentsRegistry;
+import com.ericlam.mc.eld.registration.CommandRegistry;
+import com.ericlam.mc.eld.registration.ListenerRegistry;
+import org.bukkit.event.Listener;
+import org.dragonitemc.dragoneconomy.command.dragwrld.*;
 import org.dragonitemc.dragoneconomy.command.fer.*;
 import org.dragonitemc.dragoneconomy.command.wrld.*;
 import org.dragonitemc.dragoneconomy.manager.NFTokenManager;
@@ -12,19 +14,19 @@ import java.util.List;
 
 public class DragonEconomyRegistry implements ComponentsRegistry {
     @Override
-    public void registerCommand(CommandRegistry registry) {
+    public void registerCommand(CommandRegistry<CommandNode> registry) {
 
-        registry.command(DragemsCommand.class, sub -> {
+        registry.command(DragwrldCommand.class, sub -> {
 
-            sub.command(DragemsBalanceCommand.class);
+            sub.command(DragwrldBalanceCommand.class);
 
-            sub.command(DragemsTransferCommand.class);
+            sub.command(DragwrldTransferCommand.class);
 
-            sub.command(DragemsDepositCommand.class);
+            sub.command(DragwrldDepositCommand.class);
 
-            sub.command(DragemsWithdrawCommand.class);
+            sub.command(DragwrldWithdrawCommand.class);
 
-            sub.command(DragemsSetCommand.class);
+            sub.command(DragwrldSetCommand.class);
 
         });
 
@@ -56,7 +58,7 @@ public class DragonEconomyRegistry implements ComponentsRegistry {
     }
 
     @Override
-    public void registerListeners(ListenerRegistry registry) {
+    public void registerListeners(ListenerRegistry<Listener> registry) {
         registry.listeners(List.of(NFTokenManager.class));
         registry.listeners(List.of(DragonEconomyListener.class));
     }
