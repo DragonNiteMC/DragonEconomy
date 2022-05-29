@@ -39,7 +39,12 @@ public class DragwrldTransferCommand implements CommandNode {
 
         sender.sendMessage(message.getLang().get("transferring-balance", amount, self.getName(), target.getName()));
         economyService.transfer(self.getUniqueId(), target.getUniqueId(), amount)
-                .thenRunSync(result -> sender.sendMessage(message.getResultMessage(result)))
+                .thenRunSync(result -> {
+                    sender.sendMessage(message.getResultMessage(result));
+                    if (target.isOnline() && target.getPlayer() != null){
+                        target.getPlayer().sendMessage(message.getLang().get("got-transferred-balance", amount, self.getName()));
+                    }
+                })
                 .joinWithCatch(ex -> sender.sendMessage(message.getErrorMessage(ex)));
 
     }

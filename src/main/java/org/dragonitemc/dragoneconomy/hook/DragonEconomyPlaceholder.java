@@ -51,6 +51,10 @@ public final class DragonEconomyPlaceholder extends PlaceholderExpansion impleme
         economyService.getBalance(log.getTarget().getId()).thenRunSync(balance -> {
             this.balanceCache.put(log.getTarget().getId(), balance);
             plugin.getLogger().info("Cache updated: "+log.getTarget().getId());
+            if (log.getUser() != null){
+                this.balanceCache.put(log.getUser().getId(), balance);
+                plugin.getLogger().info("Cache updated: "+log.getUser().getId());
+            }
         }).joinWithCatch(ex -> {
             plugin.getLogger().warning("Failed to update cache: "+ex.getMessage());
             ex.printStackTrace();
