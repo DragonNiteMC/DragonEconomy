@@ -5,7 +5,7 @@ balance: "&e{0}''s balance: &6{1}"
 not-online: "player {0} is not online"
 no-console: "you can't use this command in the console"
 transferring-balance: "transferring ${0} from &e{1} to &e{2}..."
-got-transferred: "you have been transferred ${0} from &e{1}"
+got-transferred-balance: "you have been transferred ${0} from &e{1}"
 operation-success: "operation successful"
 operation-failed: "operation failed: {0}"
 # ACCOUNT_NOT_EXIST, SUCCESS, BALANCE_INSUFFICIENT, UNKNOWN_ERROR
