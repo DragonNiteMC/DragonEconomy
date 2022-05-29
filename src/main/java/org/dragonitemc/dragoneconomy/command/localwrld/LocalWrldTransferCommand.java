@@ -1,4 +1,4 @@
-package org.dragonitemc.dragoneconomy.command.dragwrld;
+package org.dragonitemc.dragoneconomy.command.localwrld;
 
 import com.ericlam.mc.eld.annotations.CommandArg;
 import com.ericlam.mc.eld.annotations.Commander;
@@ -16,7 +16,7 @@ import javax.inject.Inject;
         name = "transfer",
         description = "金錢轉移到另一個玩家"
 )
-public class DragwrldTransferCommand implements CommandNode {
+public class LocalWrldTransferCommand implements CommandNode {
 
     @Inject
     private AsyncEconomyService economyService;

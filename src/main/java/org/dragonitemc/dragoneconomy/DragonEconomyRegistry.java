@@ -5,7 +5,9 @@ import com.ericlam.mc.eld.bukkit.ComponentsRegistry;
 import com.ericlam.mc.eld.registration.CommandRegistry;
 import com.ericlam.mc.eld.registration.ListenerRegistry;
 import org.bukkit.event.Listener;
-import org.dragonitemc.dragoneconomy.command.dragwrld.*;
+import org.dragonitemc.dragoneconomy.command.eco.DecoCommand;
+import org.dragonitemc.dragoneconomy.command.eco.ReloadCommand;
+import org.dragonitemc.dragoneconomy.command.localwrld.*;
 import org.dragonitemc.dragoneconomy.command.fer.*;
 import org.dragonitemc.dragoneconomy.command.wrld.*;
 import org.dragonitemc.dragoneconomy.manager.NFTokenManager;
@@ -16,17 +18,23 @@ public class DragonEconomyRegistry implements ComponentsRegistry {
     @Override
     public void registerCommand(CommandRegistry<CommandNode> registry) {
 
-        registry.command(DragwrldCommand.class, sub -> {
+        registry.command(DecoCommand.class, sub -> {
 
-            sub.command(DragwrldBalanceCommand.class);
+            sub.command(ReloadCommand.class);
 
-            sub.command(DragwrldTransferCommand.class);
+        });
 
-            sub.command(DragwrldDepositCommand.class);
+        registry.command(LocalWrldCommand.class, sub -> {
 
-            sub.command(DragwrldWithdrawCommand.class);
+            sub.command(LocalWrldBalanceCommand.class);
 
-            sub.command(DragwrldSetCommand.class);
+            sub.command(LocalWrldTransferCommand.class);
+
+            sub.command(LocalWrldDepositCommand.class);
+
+            sub.command(LocalWrldWithdrawCommand.class);
+
+            sub.command(LocalWrldSetCommand.class);
 
         });
 

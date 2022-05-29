@@ -1,4 +1,4 @@
-package org.dragonitemc.dragoneconomy.command.dragwrld;
+package org.dragonitemc.dragoneconomy.command.localwrld;
 
 import com.ericlam.mc.eld.annotations.CommandArg;
 import com.ericlam.mc.eld.annotations.Commander;
@@ -15,7 +15,7 @@ import javax.inject.Inject;
         name = "balance",
         description = "查詢餘額"
 )
-public class DragwrldBalanceCommand implements CommandNode {
+public class LocalWrldBalanceCommand implements CommandNode {
 
     @Inject
     private DragonEconomyMessage message;

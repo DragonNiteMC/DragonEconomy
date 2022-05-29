@@ -1,4 +1,4 @@
-package org.dragonitemc.dragoneconomy.command.dragwrld;
+package org.dragonitemc.dragoneconomy.command.localwrld;
 
 import com.ericlam.mc.eld.annotations.CommandArg;
 import com.ericlam.mc.eld.annotations.Commander;
@@ -15,7 +15,7 @@ import javax.inject.Inject;
         description = "向玩家提取金錢",
         permission = "dragoneconomy.admin"
 )
-public class DragwrldWithdrawCommand implements CommandNode {
+public class LocalWrldWithdrawCommand implements CommandNode {
 
     @Inject
     private DragonEconomyMessage message;

@@ -1,4 +1,4 @@
-package org.dragonitemc.dragoneconomy.command.dragwrld;
+package org.dragonitemc.dragoneconomy.command.localwrld;
 
 import com.ericlam.mc.eld.annotations.CommandArg;
 import com.ericlam.mc.eld.annotations.Commander;
@@ -11,11 +11,11 @@ import org.dragonitemc.dragoneconomy.config.DragonEconomyMessage;
 import javax.inject.Inject;
 
 @Commander(
-        name = "deposit",
-        description = "發送金錢到玩家的錢包",
+        name = "set",
+        description = "設置金錢",
         permission = "dragoneconomy.admin"
 )
-public class DragwrldDepositCommand implements CommandNode {
+public class LocalWrldSetCommand implements CommandNode {
 
     @Inject
     private DragonEconomyMessage message;
@@ -31,7 +31,7 @@ public class DragwrldDepositCommand implements CommandNode {
 
     @Override
     public void execute(CommandSender sender) {
-        economyService.depositPlayer(player.getUniqueId(), amount, sender.getName())
+        economyService.setPlayer(player.getUniqueId(), amount, sender.getName())
                 .thenRunSync(result -> sender.sendMessage(message.getResultMessage(result)))
                 .joinWithCatch(ex -> sender.sendMessage(message.getErrorMessage(ex)));
     }
