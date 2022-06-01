@@ -8,7 +8,7 @@ import org.dragonitemc.dragoneconomy.config.DragonEconomyMessage;
 import javax.inject.Inject;
 
 @Commander(
-        name = "deco",
+        name = "reload",
         description = "Reload the plugin",
         permission = "dragoneconomy.admin"
 )
